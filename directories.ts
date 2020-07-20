@@ -40,11 +40,7 @@ export function tmpdir(): string {
   const env = Deno.env.get;
   const os = Deno.build.os;
 
-  let tmp = env("TMPDIR");
-  if (tmp) return resolve(tmp);
-  tmp = env("TEMP");
-  if (tmp) return resolve(tmp);
-  tmp = env("TMP");
+  let tmp = env("TMPDIR") ?? env("TEMP") ?? env("TMP");
   if (tmp) return resolve(tmp);
 
   switch (os) {
@@ -53,6 +49,7 @@ export function tmpdir(): string {
       return resolve("/tmp");
 
     case "windows":
-      return resolve("C:\\TEMP");
+      const drive = env("HOMEDRIVE") ?? env("SYSTEMDRIVE") ?? "C:";
+      return resolve(join(drive, "TEMP"));
   }
 }
