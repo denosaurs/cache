@@ -47,9 +47,7 @@ export function tmpdir(): string {
     case "linux":
     case "darwin":
       return resolve("/tmp");
-
     case "windows":
-      const drive = env("HOMEDRIVE") ?? env("SYSTEMDRIVE") ?? "C:";
-      return resolve(join(drive, "TEMP"));
+      return resolve(join(env("HOMEDRIVE") ?? env("SYSTEMDRIVE") ?? "C:", "TEMP"));
   }
 }
