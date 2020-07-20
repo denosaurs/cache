@@ -1,35 +1,35 @@
-import { collect } from "./collect.ts";
-import { cachedir, tmpdir } from "./directories.ts";
+import { join, exists as _exists } from "./deps.ts";
+import { cachedir } from "./directories.ts";
+import { File, FileWrapper, Origin, Policy, RELOAD_POLICY } from "./file.ts";
+import { toURL } from "./helpers.ts";
 
-interface File {
-  url: string;
-  info: Deno.FileInfo;
-  path: string;
-}
+export { File, Policy, Origin, RELOAD_POLICY };
 
-export interface Control {
-  maxAge?: number;
-  maxStale?: number;
-  minFresh?: number;
+interface Options {
+  directory: string;
 }
 
 export class Wrapper {
-  namespace?: string;
+  #namespace?: string;
 
   constructor(ns?: string) {
-    this.namespace = ns;
+    this.#namespace = ns;
   }
 
-  async fetch(url: string, control?: Control): Promise<File> {
-    return await fetch(url, control, this.namespace);
+  async fetch(url: string | URL, policy?: Policy): Promise<File> {
+    return await fetch(url, policy, this.#namespace);
   }
 
-  async remove(url: string): Promise<boolean> {
-    return await remove(url, this.namespace);
+  async remove(url: string | URL): Promise<boolean> {
+    return await remove(url, this.#namespace);
+  }
+
+  async exists(url: string | URL): Promise<boolean> {
+    return await exists(url, this.#namespace);
   }
 
   async purge(): Promise<boolean> {
-    return await purge(this.namespace);
+    return await purge(this.#namespace);
   }
 }
 
@@ -37,7 +37,7 @@ export class CacheError extends Error {
   constructor(message: string) {
     super(message);
     this.name = "CacheError";
-    this.stack = undefined;
+    // this.stack = undefined;
   }
 }
 
@@ -49,22 +49,44 @@ export function global(): Wrapper {
   return new Wrapper();
 }
 
-export async function fetch(
-  url: string,
-  control?: Control,
-  ns?: string,
-): Promise<File> {
-  return {
-    url,
-    info: Deno.lstatSync("README.md"),
-    path: "a",
-  };
+export function options(options: Options): void {
+  opts = options;
 }
 
-export async function remove(url: string, ns?: string): Promise<boolean> {
+export function directory(): string {
+  return opts.directory;
+}
+
+export async function fetch(
+  url: string | URL,
+  policy?: Policy,
+  ns?: string,
+): Promise<File> {
+  const wrapper = new FileWrapper(toURL(url), policy, ns);
+  return await wrapper.get();
+}
+
+export async function exists(url: string | URL, ns?: string): Promise<boolean> {
+  const wrapper = new FileWrapper(toURL(url), undefined, ns);
+  return await wrapper.exists();
+}
+
+export async function remove(url: string | URL, ns?: string): Promise<boolean> {
+  const wrapper = new FileWrapper(toURL(url), undefined, ns);
+  if (!await wrapper.exists()) return false;
+  await wrapper.remove();
   return true;
 }
 
 export async function purge(ns?: string): Promise<boolean> {
+  const dir = [directory()];
+  if (ns) dir.push(ns);
+  const path = join(...dir);
+  if (!await _exists(path)) return false;
+  await Deno.remove(path, { recursive: true });
   return true;
 }
+
+export let opts = {
+  directory: cachedir(),
+};

@@ -1,4 +1,4 @@
-import { resolve, join } from "./deps.ts";
+import { join, resolve } from "./deps.ts";
 
 const POSIX_HOME = "HOME";
 

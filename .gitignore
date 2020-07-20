@@ -1,8 +1,5 @@
 # macOS files
 .DS_Store
 
-# test_plugin build
-test_plugin/target
-
 # test cache
-test/cache
+cache
