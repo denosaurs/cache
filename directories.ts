@@ -48,6 +48,8 @@ export function tmpdir(): string {
     case "darwin":
       return resolve("/tmp");
     case "windows":
-      return resolve(join(env("HOMEDRIVE") ?? env("SYSTEMDRIVE") ?? "C:", "TEMP"));
+      return resolve(
+        join(env("HOMEDRIVE") ?? env("SYSTEMDRIVE") ?? "C:", "TEMP"),
+      );
   }
 }
