@@ -6,7 +6,7 @@ Deno.test({
   async fn(): Promise<void> {
     const url = "file://./README.md";
 
-    Cache.options({
+    Cache.configure({
       directory: "cache",
     });
     const local = Cache.namespace("local");
@@ -29,7 +29,7 @@ Deno.test({
   async fn(): Promise<void> {
     const url = "https://deno.land/std/version.ts";
 
-    Cache.options({
+    Cache.configure({
       directory: "cache",
     });
     const local = Cache.namespace("remote");

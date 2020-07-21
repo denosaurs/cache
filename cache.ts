@@ -6,7 +6,7 @@ import { toURL } from "./helpers.ts";
 export { File, Policy, Origin, RELOAD_POLICY };
 
 interface Options {
-  directory: string;
+  directory: string | undefined;
 }
 
 export class Wrapper {
@@ -49,12 +49,12 @@ export function global(): Wrapper {
   return new Wrapper();
 }
 
-export function options(options: Options): void {
-  opts = options;
+export function configure(opts: Options): void {
+  options = opts;
 }
 
 export function directory(): string {
-  return opts.directory;
+  return options.directory ?? cachedir();
 }
 
 export async function fetch(
@@ -87,6 +87,6 @@ export async function purge(ns?: string): Promise<boolean> {
   return true;
 }
 
-export let opts = {
-  directory: cachedir(),
+export let options: Options = {
+  directory: undefined,
 };
