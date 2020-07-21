@@ -41,4 +41,4 @@ jobs:
         deno-version: v1.x
 
     - name: Run deno test
-      run: deno test -A --unstable
+      run: deno test --allow-read --allow-write --allow-net --unstable
