@@ -5,6 +5,7 @@ import {
   exists,
   join,
   resolve,
+  extname
 } from "./deps.ts";
 import { ff } from "./file_fetcher.ts";
 import { protocol } from "./helpers.ts";
@@ -128,7 +129,7 @@ function path(url: URL, ns?: string) {
     url.hostname,
     hash(url),
   ]);
-  return resolve(join(...path));
+  return resolve(`${join(...path)}${extname(url.pathname)}`);
 }
 
 function metapath(url: URL, ns?: string) {
