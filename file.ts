@@ -5,7 +5,7 @@ import {
   exists,
   join,
   resolve,
-  extname
+  extname,
 } from "./deps.ts";
 import { ff } from "./file_fetcher.ts";
 import { protocol } from "./helpers.ts";

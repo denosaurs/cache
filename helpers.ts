@@ -20,11 +20,13 @@ export function toURL(url: string | URL): URL {
 }
 
 export function toFileUrl(url: string): URL {
-    let pathName = url.replace(/\\/g, '/');
+  let pathName = url.replace(/\\/g, "/");
 
-    if (pathName[0] !== '/') {
-        pathName = '/' + pathName;
-    }
+  if (pathName[0] !== "/") {
+    pathName = "/" + pathName;
+  }
 
-    return new URL(encodeURI(`file://${pathName}`).replace(/[?#]/g, encodeURIComponent));
+  return new URL(
+    encodeURI(`file://${pathName}`).replace(/[?#]/g, encodeURIComponent),
+  );
 }
