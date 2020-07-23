@@ -1,4 +1,5 @@
 import { CacheError } from "./cache.ts";
+import { join, resolve } from "./deps.ts";
 
 export function protocol(protocol: string) {
   return protocol.slice(0, -1);
@@ -16,17 +17,25 @@ export function toURL(url: string | URL): URL {
       throw new CacheError(error.message);
     }
   }
+
+  if (url.protocol === "file:") {
+    const pathname = resolve(join(url.host, url.pathname));
+    url = new URL(
+      encodeURI(`file://${pathname}`).replace(/[?#]/g, encodeURIComponent),
+    );
+  }
+
   return url;
 }
 
 export function toFileUrl(url: string): URL {
-  let pathName = url.replace(/\\/g, "/");
+  let pathname = url.replace(/\\/g, "/");
 
-  if (pathName[0] !== "/") {
-    pathName = "/" + pathName;
+  if (pathname[0] !== "/") {
+    pathname = "/" + pathname;
   }
 
   return new URL(
-    encodeURI(`file://${pathName}`).replace(/[?#]/g, encodeURIComponent),
+    encodeURI(`file://${pathname}`).replace(/[?#]/g, encodeURIComponent),
   );
 }
