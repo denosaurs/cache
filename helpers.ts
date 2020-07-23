@@ -8,31 +8,34 @@ export function protocol(protocol: string) {
 export function toURL(url: string | URL): URL {
   if (typeof url === "string") {
     try {
-      try {
+      if (url.startsWith("file://")) {
+        url = resolveFileURL(url);
+      } else {
         url = new URL(url);
-      } catch {
-        url = toFileUrl(url as string);
       }
     } catch (error) {
       throw new CacheError(error.message);
     }
-  }
-
-  if (url.protocol === "file:") {
-    const pathname = resolve(join(url.host, url.pathname));
-    url = new URL(
-      encodeURI(`file://${pathname}`).replace(/[?#]/g, encodeURIComponent),
-    );
+  } else if (url.protocol === "file:") {
+    url = resolveFileURL(url);
   }
 
   return url;
 }
 
-export function toFileUrl(url: string): URL {
-  let pathname = url.replace(/\\/g, "/");
+export function resolveFileURL(url: URL | string): URL {
+  let pathname;
 
-  if (pathname[0] !== "/") {
-    pathname = "/" + pathname;
+  if (typeof url === "string") {
+    pathname = resolve(url.replace("file://", ""));
+  } else {
+    pathname = resolve(join(url.host, url.pathname));
+  }
+
+  pathname = pathname.replace(/\\/g, "/"); // windows, grr
+
+  while (pathname[0] !== "/") {
+    pathname = pathname.substr(pathname.indexOf("/"));
   }
 
   return new URL(

@@ -4,9 +4,13 @@ import { Metadata } from "./file.ts";
 import { protocol } from "./helpers.ts";
 
 async function protocolFile(url: URL, path: string): Promise<Metadata> {
-  const pathname = resolve(join(url.host, url.pathname));
-  if (!await exists(pathname)) {
-    throw new CacheError(`${pathname} does not exist on the local system.`);
+  const { pathname } = url;
+  try {
+    if (!await exists(pathname)) {
+      throw new CacheError(`${pathname} does not exist on the local system.`);
+    }
+  } catch {
+    throw new CacheError(`${pathname} is not valid.`);
   }
   await Deno.copyFile(pathname, path);
   return {

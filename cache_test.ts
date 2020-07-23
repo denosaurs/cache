@@ -41,10 +41,10 @@ Deno.test({
     const fileABS = await local.fetch(abs);
     const fileREL = await local.fetch(rel);
 
+    assertEquals(fileREL.meta.url, fileABS.meta.url);
+
     assertEquals(fileABS.origin, Cache.Origin.FETCH);
     assertEquals(fileREL.origin, Cache.Origin.CACHE);
-
-    assertEquals(fileREL.meta.url, fileABS.meta.url);
 
     assert(await local.exists(abs));
     assert(await local.exists(rel));
