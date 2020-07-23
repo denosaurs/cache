@@ -8,10 +8,14 @@ export function protocol(protocol: string) {
 export function toURL(url: string | URL): URL {
   if (typeof url === "string") {
     try {
-      if (url.startsWith("file://")) {
+      try {
+        if (url.startsWith("file://")) {
+          url = resolveFileURL(url);
+        } else {
+          url = new URL(url);
+        }
+      } catch (error) {
         url = resolveFileURL(url);
-      } else {
-        url = new URL(url);
       }
     } catch (error) {
       throw new CacheError(error.message);

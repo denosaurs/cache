@@ -4,7 +4,7 @@ import { assert, assertEquals, resolve } from "./test_deps.ts";
 Deno.test({
   name: "cache | local | relative",
   async fn(): Promise<void> {
-    const url = "file://./README.md";
+    const url = "./README.md";
 
     Cache.configure({
       directory: "cache",
@@ -26,8 +26,8 @@ Deno.test({
 Deno.test({
   name: "cache | local | abs/rel",
   async fn(): Promise<void> {
-    const abs = `file://${resolve("./README.md")}`;
-    const rel = `file://./README.md`;
+    const abs = `${resolve("./README.md")}`;
+    const rel = `./README.md`;
 
     Cache.configure({
       directory: "cache",
