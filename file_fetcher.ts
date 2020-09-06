@@ -42,7 +42,8 @@ export async function ff(url: URL, path: string): Promise<Metadata> {
     case "http":
     case "https":
       return await protocolHttp(url, path);
+
     default:
-      throw new CacheError("unsupported protocol");
+      throw new CacheError(`unsupported protocol ("${url}")`);
   }
 }

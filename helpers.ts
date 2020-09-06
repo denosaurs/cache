@@ -9,12 +9,12 @@ export function toURL(url: string | URL): URL {
   if (typeof url === "string") {
     try {
       try {
-        if (url.startsWith("file://")) {
-          url = resolveFileURL(url);
-        } else {
+        if (url.startsWith("http://") || url.startsWith("https://")) {
           url = new URL(url);
+        } else {
+          url = resolveFileURL(url);
         }
-      } catch (error) {
+      } catch {
         url = resolveFileURL(url);
       }
     } catch (error) {
