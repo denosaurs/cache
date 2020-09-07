@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
+## [0.1.1] - 2020-09-07
+
+### Features
+
+- deno.land/x release ([`689a505`])
+
 ## [0.1.0] - 2020-09-07
 
 ### Features
@@ -61,6 +67,8 @@ and this project adheres to [Semantic Versioning].
 
 [keep a changelog]: https://keepachangelog.com/en/1.0.0/
 [semantic versioning]: https://semver.org/spec/v2.0.0.html
+[0.1.1]: https://github.com/denosaurs/cache/compare/0.1.0...0.1.1
+[`689a505`]: https://github.com/denosaurs/cache/commit/689a505002fe4007621913dee057d251dae3b29e
 [0.1.0]: https://github.com/denosaurs/cache/compare/0.0.6...0.1.0
 [`68a60fa`]: https://github.com/denosaurs/cache/commit/68a60faa51a71ef66ea8cd4ea6c874e741e92618
 [0.0.6]: https://github.com/denosaurs/cache/compare/0.0.5...0.0.6
