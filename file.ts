@@ -124,11 +124,7 @@ function hash(url: URL) {
 function path(url: URL, ns?: string) {
   let path = [Cache.directory()];
   if (ns) path.push(ns);
-  path = path.concat([
-    protocol(url.protocol),
-    url.hostname,
-    hash(url),
-  ]);
+  path = path.concat([protocol(url.protocol), url.hostname, hash(url)]);
   return resolve(`${join(...path)}${extname(url.pathname)}`);
 }
 

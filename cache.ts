@@ -73,7 +73,7 @@ export async function exists(url: string | URL, ns?: string): Promise<boolean> {
 
 export async function remove(url: string | URL, ns?: string): Promise<boolean> {
   const wrapper = new FileWrapper(toURL(url), undefined, ns);
-  if (!await wrapper.exists()) return false;
+  if (!(await wrapper.exists())) return false;
   await wrapper.remove();
   return true;
 }
@@ -82,7 +82,7 @@ export async function purge(ns?: string): Promise<boolean> {
   const dir = [directory()];
   if (ns) dir.push(ns);
   const path = join(...dir);
-  if (!await _exists(path)) return false;
+  if (!(await _exists(path))) return false;
   await Deno.remove(path, { recursive: true });
   return true;
 }

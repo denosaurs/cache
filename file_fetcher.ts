@@ -6,7 +6,7 @@ import { protocol } from "./helpers.ts";
 async function protocolFile(url: URL, path: string): Promise<Metadata> {
   const { pathname } = url;
   try {
-    if (!await exists(pathname)) {
+    if (!(await exists(pathname))) {
       throw new CacheError(`${pathname} does not exist on the local system.`);
     }
   } catch {
