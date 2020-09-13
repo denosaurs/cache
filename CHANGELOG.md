@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
+## [0.2.0] - 2020-09-13
+
+### Bug Fixes
+
+- merge pr #3 from Denocord/fix/deno-1.4 ([`a329e2a`])
+
 ## [0.1.1] - 2020-09-07
 
 ### Features
@@ -53,8 +59,6 @@ and this project adheres to [Semantic Versioning].
 
 ## [0.0.1] - 2020-07-21
 
-## [0.0.1] - 2020-07-21
-
 ### Features
 
 - basic cache ([`e6a9006`])
@@ -67,6 +71,8 @@ and this project adheres to [Semantic Versioning].
 
 [keep a changelog]: https://keepachangelog.com/en/1.0.0/
 [semantic versioning]: https://semver.org/spec/v2.0.0.html
+[0.2.0]: https://github.com/denosaurs/cache/compare/0.1.1...0.2.0
+[`a329e2a`]: https://github.com/denosaurs/cache/commit/a329e2a0b03038d036027bf304a5a6eb10ecb9ae
 [0.1.1]: https://github.com/denosaurs/cache/compare/0.1.0...0.1.1
 [`689a505`]: https://github.com/denosaurs/cache/commit/689a505002fe4007621913dee057d251dae3b29e
 [0.1.0]: https://github.com/denosaurs/cache/compare/0.0.6...0.1.0
@@ -82,7 +88,6 @@ and this project adheres to [Semantic Versioning].
 [`f93fdd0`]: https://github.com/denosaurs/cache/commit/f93fdd09c8e2bc3a3f11d3342b96625f77328c08
 [0.0.2]: https://github.com/denosaurs/cache/compare/0.0.1...0.0.2
 [`85e633f`]: https://github.com/denosaurs/cache/commit/85e633f08205818fe5dfa3927303cd1efb757884
-[0.0.1]: https://github.com/denosaurs/cache/compare/0.0.1...0.0.1
 [0.0.1]: https://github.com/denosaurs/cache/compare/0.0.1
 [`e6a9006`]: https://github.com/denosaurs/cache/commit/e6a9006ee960b7f179d74e6441df6fda058962c7
 [`d7fdf90`]: https://github.com/denosaurs/cache/commit/d7fdf909c8300d4b73e609ca85373acc4b7833d7
