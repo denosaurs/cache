@@ -3,7 +3,8 @@ import { cachedir } from "./directories.ts";
 import { File, FileWrapper, Origin, Policy, RELOAD_POLICY } from "./file.ts";
 import { toURL } from "./helpers.ts";
 
-export { File, Policy, Origin, RELOAD_POLICY };
+export type { File, Policy };
+export { Origin, RELOAD_POLICY };
 
 interface Options {
   directory: string | undefined;
