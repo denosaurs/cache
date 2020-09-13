@@ -1,6 +1,6 @@
 import { CacheError } from "./cache.ts";
 import { exists, join, resolve } from "./deps.ts";
-import { Metadata } from "./file.ts";
+import type { Metadata } from "./file.ts";
 import { protocol } from "./helpers.ts";
 
 async function protocolFile(url: URL, path: string): Promise<Metadata> {
