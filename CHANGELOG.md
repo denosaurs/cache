@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
+## [0.2.1] - 2020-09-19
+
 ## [0.2.0] - 2020-09-13
 
 ### Bug Fixes
@@ -71,6 +73,7 @@ and this project adheres to [Semantic Versioning].
 
 [keep a changelog]: https://keepachangelog.com/en/1.0.0/
 [semantic versioning]: https://semver.org/spec/v2.0.0.html
+[0.2.1]: https://github.com/denosaurs/cache/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/denosaurs/cache/compare/0.1.1...0.2.0
 [`a329e2a`]: https://github.com/denosaurs/cache/commit/a329e2a0b03038d036027bf304a5a6eb10ecb9ae
 [0.1.1]: https://github.com/denosaurs/cache/compare/0.1.0...0.1.1
