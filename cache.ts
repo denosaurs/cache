@@ -1,4 +1,4 @@
-import { join, exists as _exists } from "./deps.ts";
+import { exists as _exists, join } from "./deps.ts";
 import { cachedir } from "./directories.ts";
 import { File, FileWrapper, Origin, Policy, RELOAD_POLICY } from "./file.ts";
 import { toURL } from "./helpers.ts";

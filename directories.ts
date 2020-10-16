@@ -40,7 +40,7 @@ export function tmpdir(): string {
   const env = Deno.env.get;
   const os = Deno.build.os;
 
-  let tmp = env("TMPDIR") ?? env("TEMP") ?? env("TMP");
+  const tmp = env("TMPDIR") ?? env("TEMP") ?? env("TMP");
   if (tmp) return resolve(tmp);
 
   switch (os) {

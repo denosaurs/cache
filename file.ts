@@ -3,9 +3,9 @@ import {
   dirname,
   ensureDir,
   exists,
+  extname,
   join,
   resolve,
-  extname,
 } from "./deps.ts";
 import { ff } from "./file_fetcher.ts";
 import { protocol } from "./helpers.ts";
