@@ -1,10 +1,10 @@
 import { CacheError } from "./cache.ts";
-import { exists, join, resolve } from "./deps.ts";
+import { exists, fromFileUrl } from "./deps.ts";
 import type { Metadata } from "./file.ts";
 import { protocol } from "./helpers.ts";
 
 async function protocolFile(url: URL, path: string): Promise<Metadata> {
-  const { pathname } = url;
+  const pathname = fromFileUrl(url);
   try {
     if (!(await exists(pathname))) {
       throw new CacheError(`${pathname} does not exist on the local system.`);
