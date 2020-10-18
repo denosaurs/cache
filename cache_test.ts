@@ -53,6 +53,28 @@ Deno.test({
     assert(!(await local.exists(rel)));
   },
 });
+Deno.test({
+  name: "cache | local | url",
+  async fn(): Promise<void> {
+    const url = new URL("README.md", import.meta.url);
+
+    Cache.configure({
+      directory: "cache",
+    });
+    const local = Cache.namespace("local");
+    await local.purge();
+
+    assert(!(await local.exists(url)));
+
+    const file = await local.fetch(url);
+    assertEquals(file.origin, Cache.Origin.FETCH);
+
+    assert(await local.exists(url));
+
+    await local.remove(url);
+    assert(!(await local.exists(url)));
+  },
+});
 
 Deno.test({
   name: "cache | remote",
