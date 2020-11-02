@@ -1,9 +1,12 @@
 import { CacheError } from "./cache.ts";
-import { join, resolve, toFileUrl, fromFileUrl } from "./deps.ts";
+import { fromFileUrl, join, resolve, toFileUrl } from "./deps.ts";
 
 export function toURL(url: string | URL): URL {
   if (typeof url === "string") {
-    if (url.startsWith("http:") || url.startsWith("https:") || url.startsWith("file:")) {
+    if (
+      url.startsWith("http:") || url.startsWith("https:") ||
+      url.startsWith("file:")
+    ) {
       url = new URL(url);
     } else {
       url = toFileUrl(resolve(url));
