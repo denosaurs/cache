@@ -7,7 +7,7 @@ import {
   join,
   resolve,
 } from "./deps.ts";
-import { cacheFile } from "./file_cacher.ts";
+import { fetchFile } from "./file_fetcher.ts";
 import { directory } from "./cache.ts";
 
 export interface Policy {
@@ -92,7 +92,7 @@ export class FileWrapper {
   }
 
   async fetch(): Promise<File> {
-    const meta = await cacheFile(this.url, this.path);
+    const meta = await fetchFile(this.url, this.path);
     await metasave(meta, this.url, this.ns);
     return {
       ...this,
@@ -108,10 +108,9 @@ export class FileWrapper {
       const file = await this.read();
       if (!this.policy) return file;
       if (checkPolicy(file, this.policy)) return file;
-      return await this.fetch();
-    } else {
-      return await this.fetch();
     }
+
+    return await this.fetch();
   }
 }
 

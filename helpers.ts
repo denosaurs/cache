@@ -1,5 +1,4 @@
-import { CacheError } from "./cache.ts";
-import { fromFileUrl, join, resolve, toFileUrl } from "./deps.ts";
+import { fromFileUrl, resolve, toFileUrl } from "./deps.ts";
 
 export function toURL(url: string | URL): URL {
   if (typeof url === "string") {

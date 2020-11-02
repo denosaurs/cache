@@ -14,7 +14,7 @@ Deno.test({
 
     assert(!(await local.exists(url)));
 
-    const file = await local.fetch(url);
+    const file = await local.cache(url);
     assertEquals(file.origin, Cache.Origin.FETCH);
 
     assert(await local.exists(url));
@@ -39,8 +39,8 @@ Deno.test({
     assert(!(await local.exists(abs)));
     assert(!(await local.exists(rel)));
 
-    const fileABS = await local.fetch(abs);
-    const fileREL = await local.fetch(rel);
+    const fileABS = await local.cache(abs);
+    const fileREL = await local.cache(rel);
 
     assertEquals(fileREL.meta.url, fileABS.meta.url);
 
@@ -68,7 +68,7 @@ Deno.test({
 
     assert(!(await local.exists(url)));
 
-    const file = await local.fetch(url);
+    const file = await local.cache(url);
     assertEquals(file.origin, Cache.Origin.FETCH);
 
     assert(await local.exists(url));
@@ -86,17 +86,17 @@ Deno.test({
     Cache.configure({
       directory: "cache",
     });
-    const local = Cache.namespace("remote");
-    await local.purge();
+    const remote = Cache.namespace("remote");
+    await remote.purge();
 
-    assert(!(await local.exists(url)));
+    assert(!(await remote.exists(url)));
 
-    const file = await local.fetch(url);
+    const file = await remote.cache(url);
     assertEquals(file.origin, Cache.Origin.FETCH);
 
-    assert(await local.exists(url));
+    assert(await remote.exists(url));
 
-    await local.remove(url);
-    assert(!(await local.exists(url)));
+    await remote.remove(url);
+    assert(!(await remote.exists(url)));
   },
 });

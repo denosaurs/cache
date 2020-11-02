@@ -17,8 +17,8 @@ export class Wrapper {
     this.#namespace = ns;
   }
 
-  async fetch(url: string | URL, policy?: Policy): Promise<File> {
-    return await fetch(url, policy, this.#namespace);
+  async cache(url: string | URL, policy?: Policy): Promise<File> {
+    return await cache(url, policy, this.#namespace);
   }
 
   async remove(url: string | URL): Promise<boolean> {
@@ -58,7 +58,7 @@ export function directory(): string {
   return options.directory ?? cachedir();
 }
 
-export async function fetch(
+export async function cache(
   url: string | URL,
   policy?: Policy,
   ns?: string,
