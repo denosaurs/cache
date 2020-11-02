@@ -35,7 +35,7 @@ async function protocolHttp(url: URL, dest: string): Promise<Metadata> {
   };
 }
 
-export async function cacheFile(url: URL, dest: string): Promise<Metadata> {
+export async function fetchFile(url: URL, dest: string): Promise<Metadata> {
   switch (url.protocol) {
     case "file:":
       return await protocolFile(url, dest);
