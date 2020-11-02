@@ -7,9 +7,8 @@ import {
   join,
   resolve,
 } from "./deps.ts";
-import { ff } from "./file_fetcher.ts";
-import { protocol } from "./helpers.ts";
-import { Cache } from "./mod.ts";
+import { cacheFile } from "./file_cacher.ts";
+import { directory } from "./cache.ts";
 
 export interface Policy {
   maxAge: number;
@@ -93,7 +92,7 @@ export class FileWrapper {
   }
 
   async fetch(): Promise<File> {
-    const meta = await ff(this.url, this.path);
+    const meta = await cacheFile(this.url, this.path);
     await metasave(meta, this.url, this.ns);
     return {
       ...this,
@@ -122,9 +121,9 @@ function hash(url: URL) {
 }
 
 function path(url: URL, ns?: string) {
-  let path = [Cache.directory()];
+  let path = [directory()];
   if (ns) path.push(ns);
-  path = path.concat([protocol(url.protocol), url.hostname, hash(url)]);
+  path = path.concat([url.protocol.slice(0, -1), url.hostname, hash(url)]);
   return resolve(`${join(...path)}${extname(url.pathname)}`);
 }
 

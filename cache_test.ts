@@ -1,5 +1,5 @@
 import { Cache } from "./mod.ts";
-import { assert, assertEquals, resolve } from "./test_deps.ts";
+import { assert, assertEquals, resolve, toFileUrl } from "./test_deps.ts";
 
 Deno.test({
   name: "cache | local | relative",
@@ -23,10 +23,11 @@ Deno.test({
     assert(!(await local.exists(url)));
   },
 });
+
 Deno.test({
   name: "cache | local | abs/rel",
   async fn(): Promise<void> {
-    const abs = `${resolve("./README.md")}`;
+    const abs = resolve("./README.md");
     const rel = `./README.md`;
 
     Cache.configure({
@@ -51,6 +52,29 @@ Deno.test({
 
     await local.remove(abs);
     assert(!(await local.exists(rel)));
+  },
+});
+
+Deno.test({
+  name: "cache | local | file://",
+  async fn(): Promise<void> {
+    const url = toFileUrl(resolve("./README.md"));
+
+    Cache.configure({
+      directory: "cache",
+    });
+    const local = Cache.namespace("local");
+    await local.purge();
+
+    assert(!(await local.exists(url)));
+
+    const file = await local.fetch(url);
+    assertEquals(file.origin, Cache.Origin.FETCH);
+
+    assert(await local.exists(url));
+
+    await local.remove(url);
+    assert(!(await local.exists(url)));
   },
 });
 
