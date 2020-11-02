@@ -1,1 +1,1 @@
-export * as Cache from "./cache.ts";
+export * from "./cache.ts";

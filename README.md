@@ -8,7 +8,7 @@
 Cache library, compatible with deno [module caching](https://deno.land/manual/linking_to_external_code).
 
 ```typescript
-import { Cache } from "https://deno.land/x/cache/mod.ts";
+import * as Cache from "https://deno.land/x/cache/mod.ts";
 
 let file = Cache.fetch("https://example.com/file.json");
 

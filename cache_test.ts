@@ -1,4 +1,4 @@
-import { Cache } from "./mod.ts";
+import * as Cache from "./mod.ts";
 import { assert, assertEquals, resolve, toFileUrl } from "./test_deps.ts";
 
 Deno.test({
