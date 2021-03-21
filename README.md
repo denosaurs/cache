@@ -5,7 +5,8 @@
 [![Dependencies](https://img.shields.io/github/workflow/status/denosaurs/cache/depsbot?label=dependencies)](https://github.com/denosaurs/depsbot)
 [![License](https://img.shields.io/github/license/denosaurs/cache)](https://github.com/denosaurs/cache/blob/master/LICENSE)
 
-Cache library, compatible with deno [module caching](https://deno.land/manual/linking_to_external_code).
+Cache library, compatible with deno
+[module caching](https://deno.land/manual/linking_to_external_code).
 
 ```typescript
 import { cache } from "https://deno.land/x/cache/mod.ts";
@@ -25,7 +26,9 @@ console.log(text);
 
 ### Contribution
 
-Pull request, issues and feedback are very welcome. Code style is formatted with `deno fmt` and commit messages are done following [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) spec.
+Pull request, issues and feedback are very welcome. Code style is formatted with
+`deno fmt` and commit messages are done following
+[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) spec.
 
 ### Licence
 
