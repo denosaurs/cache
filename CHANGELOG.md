@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog], and this project adheres to
 [Semantic Versioning].
 
+## [0.2.12] - 2021-03-24
+
+### Features
+
+- support deno stable (#7) ([`13a68d5`])
+
 ## [0.2.11] - 2021-03-21
 
 ## [0.2.10] - 2021-01-27
@@ -101,6 +107,8 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 [keep a changelog]: https://keepachangelog.com/en/1.0.0/
 [semantic versioning]: https://semver.org/spec/v2.0.0.html
+[0.2.12]: https://github.com/denosaurs/cache/compare/0.2.11...0.2.12
+[`13a68d5`]: https://github.com/denosaurs/cache/commit/13a68d555ed21acfdfd74e9857242475c25d33a8
 [0.2.11]: https://github.com/denosaurs/cache/compare/0.2.10...0.2.11
 [0.2.10]: https://github.com/denosaurs/cache/compare/0.2.9...0.2.10
 [0.2.9]: https://github.com/denosaurs/cache/compare/0.2.8...0.2.9
