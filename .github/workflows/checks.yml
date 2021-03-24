@@ -32,4 +32,4 @@ jobs:
           deno-version: v1.x
 
       - name: Run deno test
-        run: deno test --allow-read --allow-net --allow-write --unstable
+        run: deno test --allow-read --allow-net --allow-write
