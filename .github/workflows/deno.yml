@@ -20,7 +20,7 @@ jobs:
       - name: run deno lint
         run: deno lint --unstable
 
-  style:
+  tests:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
