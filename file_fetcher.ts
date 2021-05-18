@@ -1,6 +1,6 @@
 import type { Metadata } from "./file.ts";
 import { CacheError } from "./cache.ts";
-import { exists, fromFileUrl, join, resolve } from "./deps.ts";
+import { exists, fromFileUrl } from "./deps.ts";
 
 async function protocolFile(url: URL, dest: string): Promise<Metadata> {
   const path = fromFileUrl(url);

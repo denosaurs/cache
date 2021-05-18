@@ -1,8 +1,8 @@
 # cache
 
 [![Tags](https://img.shields.io/github/release/denosaurs/cache)](https://github.com/denosaurs/cache/releases)
-[![CI Status](https://img.shields.io/github/workflow/status/denosaurs/cache/check)](https://github.com/denosaurs/cache/actions)
-[![Dependencies](https://img.shields.io/github/workflow/status/denosaurs/cache/depsbot?label=dependencies)](https://github.com/denosaurs/depsbot)
+[![Checks](https://github.com/denosaurs/cache/actions/workflows/deno.yml/badge.svg)](https://github.com/denosaurs/cache/actions/workflows/deno.yml)
+[![Dependencies](https://github.com/denosaurs/cache/actions/workflows/depsbot.yml/badge.svg)](https://github.com/denosaurs/cache/actions/workflows/depsbot.yml)
 [![License](https://img.shields.io/github/license/denosaurs/cache)](https://github.com/denosaurs/cache/blob/master/LICENSE)
 
 Cache library, compatible with deno
