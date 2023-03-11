@@ -1,13 +1,5 @@
-import {
-  createHash,
-  dirname,
-  ensureDir,
-  exists,
-  extname,
-  join,
-  resolve,
-} from "./deps.ts";
-import { fetchFile } from "./file_fetcher.ts";
+import { crypto, dirname, ensureDir, extname, join, resolve } from "./deps.ts";
+import { exists, fetchFile } from "./file_fetcher.ts";
 import { directory } from "./cache.ts";
 
 export interface Policy {
@@ -116,7 +108,10 @@ export class FileWrapper {
 
 function hash(url: URL) {
   const formatted = `${url.pathname}${url.search ? "?" + url.search : ""}`;
-  return createHash("sha256").update(formatted).toString();
+  return crypto.subtle.digestSync(
+    "SHA-256",
+    new TextEncoder().encode(formatted),
+  ).toString();
 }
 
 function path(url: URL, ns?: string) {

@@ -1,6 +1,19 @@
 import type { Metadata } from "./file.ts";
 import { CacheError } from "./cache.ts";
-import { exists, fromFileUrl } from "./deps.ts";
+import { fromFileUrl } from "./deps.ts";
+
+
+export async function exists(filePath: string | URL): Promise<boolean> {
+  try {
+    await Deno.lstat(filePath);
+    return true;
+  } catch (error) {
+    if (error instanceof Deno.errors.NotFound) {
+      return false;
+    }
+    throw error;
+  }
+}
 
 async function protocolFile(url: URL, dest: string): Promise<Metadata> {
   const path = fromFileUrl(url);
