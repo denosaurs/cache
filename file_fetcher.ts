@@ -2,7 +2,6 @@ import type { Metadata } from "./file.ts";
 import { CacheError } from "./cache.ts";
 import { fromFileUrl } from "./deps.ts";
 
-
 export async function exists(filePath: string | URL): Promise<boolean> {
   try {
     await Deno.lstat(filePath);
