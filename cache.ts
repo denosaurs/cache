@@ -1,7 +1,8 @@
-import { exists as _exists, join } from "./deps.ts";
+import { join } from "./deps.ts";
 import { cachedir } from "./directories.ts";
 import { File, FileWrapper, Origin, Policy, RELOAD_POLICY } from "./file.ts";
 import { toURL } from "./helpers.ts";
+import { exists as _exists } from "./file_fetcher.ts";
 
 export type { File, Policy };
 export { Origin, RELOAD_POLICY };

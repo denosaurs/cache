@@ -13,6 +13,11 @@ export function cachedir(): string {
   let home: string | undefined;
   let path: string;
   switch (os) {
+    case "aix":
+    case "freebsd":
+    case "illumos":
+    case "netbsd":
+    case "solaris":
     case "linux": {
       const xdg = env("XDG_CACHE_HOME");
       home = xdg ?? env(POSIX_HOME);
@@ -46,6 +51,11 @@ export function tmpdir(): string {
   switch (os) {
     case "linux":
     case "darwin":
+    case "aix":
+    case "freebsd":
+    case "illumos":
+    case "netbsd":
+    case "solaris":
       return resolve("/tmp");
     case "windows":
       return resolve(
