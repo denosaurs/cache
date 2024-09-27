@@ -9,7 +9,7 @@ Cache library, compatible with deno
 [module caching](https://deno.land/manual/linking_to_external_code).
 
 ```typescript
-import { cache } from "https://deno.land/x/cache/mod.ts";
+import { cache } from "jsr:@denosaurs/cache";
 
 const file = await cache("https://example.com/file.json");
 

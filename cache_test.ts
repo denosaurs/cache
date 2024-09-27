@@ -1,5 +1,6 @@
 import * as Cache from "./mod.ts";
-import { assert, assertEquals, resolve, toFileUrl } from "./test_deps.ts";
+import { assert, assertEquals } from "./test_deps.ts";
+import { resolve, toFileUrl } from "./deps.ts";
 
 Deno.test({
   name: "cache | local | relative",

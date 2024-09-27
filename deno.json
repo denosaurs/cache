@@ -1,0 +1,5 @@
+{
+  "name": "@denosaurs/cache",
+  "version": "0.2.14",
+  "exports": "./mod.ts"
+}

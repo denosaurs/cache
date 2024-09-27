@@ -36,12 +36,11 @@ export function cachedir(): string {
       break;
   }
 
-  path = home ? path : ".deno";
-  if (!home) return path;
-  return resolve(join(home, path));
+  if (!home) return ".deno";
+  return resolve(join(home, path!));
 }
 
-export function tmpdir(): string {
+export function tmpdir(): string | undefined {
   const env = Deno.env.get;
   const os = Deno.build.os;
 
