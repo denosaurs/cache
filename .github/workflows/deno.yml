@@ -10,15 +10,15 @@ jobs:
         uses: actions/checkout@v2
 
       - name: setup latest deno version
-        uses: denoland/setup-deno@main
+        uses: denoland/setup-deno@v2
         with:
-          deno-version: v1.x
+          deno-version: v2.x
 
       - name: run deno fmt
         run: deno fmt --check
 
       - name: run deno lint
-        run: deno lint --unstable
+        run: deno lint
 
   tests:
     runs-on: ubuntu-latest
@@ -27,9 +27,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: setup latest deno version
-        uses: denoland/setup-deno@main
+        uses: denoland/setup-deno@v2
         with:
-          deno-version: v1.x
+          deno-version: v2.x
 
       - name: run deno test
-        run: deno test -A --unstable
+        run: deno test -A

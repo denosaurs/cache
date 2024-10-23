@@ -21,6 +21,7 @@ console.log(text);
 
 - Filippo Rossi ([@qu4k](https://github.com/qu4k))
 - Elias Sjögreen ([@eliassjogreen](https://github.com/eliassjogreen))
+- Dean Srebnik ([@load1n9](https://github.com/load1n9))
 
 ## Other
 
@@ -32,4 +33,4 @@ Pull request, issues and feedback are very welcome. Code style is formatted with
 
 ### Licence
 
-Copyright 2020-2023, the denosaurs team. All rights reserved. MIT license.
+Copyright 2020-2024, the denosaurs team. All rights reserved. MIT license.
