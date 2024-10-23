@@ -1,4 +1,4 @@
-import { crypto, dirname, ensureDir, extname, join, resolve } from "./deps.ts";
+import { dirname, ensureDir, extname, join, resolve } from "./deps.ts";
 import { exists, fetchFile } from "./file_fetcher.ts";
 import { directory } from "./cache.ts";
 
@@ -50,13 +50,29 @@ export interface Metadata {
 }
 
 export class FileWrapper {
-  hash: string;
-  path: string;
   metapath: string;
 
-  constructor(public url: URL, public policy?: Policy, public ns?: string) {
-    this.hash = hash(url);
-    this.path = path(url, ns);
+  static async create(
+    url: URL,
+    policy?: Policy,
+    ns?: string,
+  ): Promise<FileWrapper> {
+    return new FileWrapper(
+      url,
+      await hash(url),
+      await path(url, ns),
+      policy,
+      ns,
+    );
+  }
+
+  constructor(
+    public url: URL,
+    public hash: string,
+    public path: string,
+    public policy?: Policy,
+    public ns?: string,
+  ) {
     this.metapath = metapath(url, ns);
   }
 
@@ -106,18 +122,22 @@ export class FileWrapper {
   }
 }
 
-function hash(url: URL) {
+async function hash(url: URL): Promise<string> {
   const formatted = `${url.pathname}${url.search ? "?" + url.search : ""}`;
-  return crypto.subtle.digestSync(
-    "SHA-256",
-    new TextEncoder().encode(formatted),
-  ).toString();
+  const encoder = new TextEncoder();
+  const data = encoder.encode(formatted);
+  const hash = await crypto.subtle.digest("SHA-256", data);
+  return new TextDecoder().decode(hash);
 }
 
-function path(url: URL, ns?: string) {
+async function path(url: URL, ns?: string): Promise<string> {
   let path = [directory()];
   if (ns) path.push(ns);
-  path = path.concat([url.protocol.slice(0, -1), url.hostname, hash(url)]);
+  path = path.concat([
+    url.protocol.slice(0, -1),
+    url.hostname,
+    await hash(url),
+  ]);
   return resolve(`${join(...path)}${extname(url.pathname)}`);
 }
 

@@ -1,6 +1,12 @@
 import { join } from "./deps.ts";
 import { cachedir } from "./directories.ts";
-import { File, FileWrapper, Origin, Policy, RELOAD_POLICY } from "./file.ts";
+import {
+  type File,
+  FileWrapper,
+  Origin,
+  type Policy,
+  RELOAD_POLICY,
+} from "./file.ts";
 import { toURL } from "./helpers.ts";
 import { exists as _exists } from "./file_fetcher.ts";
 
@@ -39,7 +45,6 @@ export class CacheError extends Error {
   constructor(message: string) {
     super(message);
     this.name = "CacheError";
-    // this.stack = undefined;
   }
 }
 
@@ -64,17 +69,17 @@ export async function cache(
   policy?: Policy,
   ns?: string,
 ): Promise<File> {
-  const wrapper = new FileWrapper(toURL(url), policy, ns);
+  const wrapper = await FileWrapper.create(toURL(url), policy, ns);
   return await wrapper.get();
 }
 
 export async function exists(url: string | URL, ns?: string): Promise<boolean> {
-  const wrapper = new FileWrapper(toURL(url), undefined, ns);
+  const wrapper = await FileWrapper.create(toURL(url), undefined, ns);
   return await wrapper.exists();
 }
 
 export async function remove(url: string | URL, ns?: string): Promise<boolean> {
-  const wrapper = new FileWrapper(toURL(url), undefined, ns);
+  const wrapper = await FileWrapper.create(toURL(url), undefined, ns);
   if (!(await wrapper.exists())) return false;
   await wrapper.remove();
   return true;
