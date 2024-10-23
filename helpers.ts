@@ -14,5 +14,5 @@ export function toURL(url: string | URL): URL {
     url = toFileUrl(resolve(fromFileUrl(url)));
   }
 
-  return url;
+  return url as URL;
 }

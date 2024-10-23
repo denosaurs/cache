@@ -1,5 +1,10 @@
 {
   "name": "@denosaurs/cache",
-  "version": "0.2.14",
-  "exports": "./mod.ts"
+  "version": "0.2.15",
+  "license": "MIT",
+  "exports": {
+    ".": "./mod.ts",
+    "./directories": "./directories.ts",
+    "./file": "./file.ts"
+  }
 }
